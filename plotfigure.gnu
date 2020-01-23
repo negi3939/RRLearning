@@ -41,19 +41,20 @@ inertiaofmoment(a0,a1,a2,a3,s02) = J1 + J2 + P1*P1*M1 + ((L1*cos(a0)+P2*cos(a0+a
 
 
 ###################################################
-filePR = "pre.dat"
+filePR = "rpre.dat"
+fileAR = "r.dat"
 ###################################################
-set output "hoge.eps"
+set output "reward.eps"
+set xrange[0:900]
 
-
-set ylabel "{/Times=30 Torque [Nm] }"
-set xlabel "{/Times=30 Time {/Times-Italic } [step]}"
+set ylabel "{/Times=30 Sum of reward  }"
+set xlabel "{/Times=30 Time {/Times-Italic } }"
 set zeroaxis
 #set label 1 at screen 20,0.4 "{/Times=22 first over unstable equilibrium point}"
 
 plot \
-torq u (current[$1]):($2) w p ls 8 title "{/Times=22 Measured value}",\
-g(x,f(x) ) title "{/Times=22 Approximate curve}",\
+filePR u ($1):($2) w l title "{/Times=22 intitial}",\
+fileAR u ($1):($2) w l title "{/Times=22 optimized}",\
 #fileA05 u 1:4
 
 

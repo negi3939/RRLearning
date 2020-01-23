@@ -1,4 +1,4 @@
 # how to run
-$ make 
-$ ./tradingrrl.out
-$ ./drawfig.sh
+ $ make 
+ $ ./tradingrrl.out
+ $ ./drawfig.sh

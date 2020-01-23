@@ -279,6 +279,15 @@ void TradingRRL::fit(){
 }
 
 void TradingRRL::save_weight(){
+    for(int ii=0;ii<T+M;ii++){
+        R[ii] = 0;
+        sumR[ii] = 0;
+    }
+    set_t_p_r();
+    set_x_F();
+    calc_R();
+    calc_sumR();
+
     ofstream ofs1("w.dat"); 
     for(int j=0 ; j<M+2; ++j ){
         ofs1<< j << " " <<w[j]<<endl;
@@ -297,6 +306,15 @@ void TradingRRL::save_weight(){
 }
 
 void TradingRRL::save_pre_weight(){
+    for(int ii=0;ii<T+M;ii++){
+        R[ii] = 0;
+        sumR[ii] = 0;
+    }
+    set_t_p_r();
+    set_x_F();
+    calc_R();
+    calc_sumR();
+
     ofstream ofs1("wpre.dat"); 
     for(int j=0 ; j<M+2; ++j ){
         ofs1<< j << " " <<w[j]<<endl;
