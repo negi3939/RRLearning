@@ -279,15 +279,7 @@ void TradingRRL::fit(){
 }
 
 void TradingRRL::save_weight(){
-    for(int ii=0;ii<T+M;ii++){
-        R[ii] = 0;
-        sumR[ii] = 0;
-    }
-    set_t_p_r();
-    set_x_F();
-    calc_R();
-    calc_sumR();
-
+    
     ofstream ofs1("w.dat"); 
     for(int j=0 ; j<M+2; ++j ){
         ofs1<< j << " " <<w[j]<<endl;
@@ -300,21 +292,13 @@ void TradingRRL::save_weight(){
     
     ofstream ofs3("r.dat");
     for(int j=0 ; j<T+M; ++j ){
-        ofs3<< j << " " <<sumR[j]<<endl;
+        ofs3<< j << " " <<r[j]<<endl;
     }
     
 }
 
 void TradingRRL::save_pre_weight(){
-    for(int ii=0;ii<T+M;ii++){
-        R[ii] = 0;
-        sumR[ii] = 0;
-    }
-    set_t_p_r();
-    set_x_F();
-    calc_R();
-    calc_sumR();
-
+    
     ofstream ofs1("wpre.dat"); 
     for(int j=0 ; j<M+2; ++j ){
         ofs1<< j << " " <<w[j]<<endl;
@@ -322,7 +306,7 @@ void TradingRRL::save_pre_weight(){
     
     ofstream ofs3("rpre.dat");
     for(int j=0 ; j<T+M; ++j ){
-        ofs3<< j << " " <<sumR[j]<<endl;
+        ofs3<< j << " " <<r[j]<<endl;
     }
     
 }
@@ -347,7 +331,7 @@ void TradingRRL::load_weight(){
 
 int main(){
     string fname = "USDJPY30.csv";
-    int init_t = 0;
+    int init_t = 6000;
     int T = 1000;
     int M = 200;
     double mu = 10000;

@@ -33,7 +33,9 @@ differ(x,y) = (dy=y-lasty, dx=x-lastx, lasty=y, lastx=x,dy/dx)
 lastxint=0.0
 lastyint=0.0
 integraly = 0.0
-integral(x,y) = (dx=x-lastxint, lastyint=y,integraly=integraly+y*dx,integraly)   
+sumy = 0.0
+integral(x,y) = (dx=x-lastxint, lastyint=y,integraly=integraly+y*dx,integraly) 
+sum(y) = (lastyint=y,sumy=sumy+y,sumy)
 nearint(x)=(x - floor(x) <= 0.5 ? floor(x) : floor(x)+1)
 filter(x,y)=nearint(x/y)*y
 
@@ -53,8 +55,8 @@ set zeroaxis
 #set label 1 at screen 20,0.4 "{/Times=22 first over unstable equilibrium point}"
 
 plot \
-filePR u ($1):($2) w l title "{/Times=22 intitial}",\
-fileAR u ($1):($2) w l title "{/Times=22 optimized}",\
+filePR u ($1):(sum($2)) w l title "{/Times=22 intitial}",\
+fileAR u ($1):(sum($2)) w l title "{/Times=22 optimized}",\
 #fileA05 u 1:4
 
 
